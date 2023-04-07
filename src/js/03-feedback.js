@@ -31,8 +31,8 @@ function onloadData() {
 
   if (storageData) {
     formData = JSON.parse(storageData);
-    console.log(formData);
     const keys = Object.keys(formData);
+
     for (let key of keys) {
       formEl.elements[key].value = formData[key];
     }
