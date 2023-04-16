@@ -16,6 +16,10 @@ function formDataAction(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  if (isEmptyFormFields(e.target)) {
+    console.log('Не заповнені поля');
+    return;
+  }
   e.target.reset();
   console.log(formData);
   formData = {};
@@ -37,4 +41,15 @@ function onloadData() {
       formEl.elements[key].value = formData[key];
     }
   }
+}
+
+function isEmptyFormFields(form) {
+  const formEls = form.elements;
+  let keys = Object.keys(formEls);
+  for (let key of keys) {
+    if (formEls[key].type !== 'submit' && formEls[key].value === ''){
+      return true;
+    }
+  }
+  return false;
 }
